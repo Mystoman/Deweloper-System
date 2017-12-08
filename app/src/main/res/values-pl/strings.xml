@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Developer System</string>
+    <string name="login_button_register">Stwórz nowe konto</string>
+    <string name="login_button_submit">Zaloguj się</string>
+    <string name="login_hint_password">Hasło:</string>
+    <string name="login_hint_username">Login:</string>
+    <string name="title_activity_register">Rejestracja</string>
+</resources>
