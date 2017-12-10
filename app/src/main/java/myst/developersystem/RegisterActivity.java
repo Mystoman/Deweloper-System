@@ -1,5 +1,6 @@
 package myst.developersystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -86,6 +87,11 @@ public class RegisterActivity extends AppCompatActivity {
         return password.equals(passwordCheck);
     }
 
+    private void gotoLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onResume(){
         super.onResume();
@@ -100,7 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Subscribe
     public void onServerEvent(ServerEvent serverEvent){
-        Toast.makeText(this, ""+serverEvent.getServerResponse().getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, serverEvent.getServerResponse().getMessage(), Toast.LENGTH_SHORT).show();
+        gotoLogin();
     }
 
 }

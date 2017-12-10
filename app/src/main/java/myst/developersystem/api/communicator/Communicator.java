@@ -25,26 +25,33 @@ public class Communicator {
 
     private static final String TAG = "Communicator";
     private static final String SERVER_URL = "http://magdziarek.dio.vobacom.pl";
+    private final HttpLoggingInterceptor logging;
+    private final OkHttpClient.Builder httpClient;
+    private final Retrofit retrofit;
+    private final Interface service;
 
-    public void loginPost(String username, String password) {
-
+    public Communicator() {
         //Here a logging interceptor is created
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         //The logging interceptor will be added to the http client
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(logging);
 
         //The Retrofit builder will have the client attached, in order to get connection logs
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(httpClient.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(SERVER_URL)
-                .build();
-        Interface service = retrofit.create(Interface.class);
+        retrofit = new Retrofit.Builder()
+            .client(httpClient.build())
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(SERVER_URL)
+            .build();
 
-        Call<ServerResponse> call = service.post("login",username,password);
+        service = retrofit.create(Interface.class);
+    }
+
+    public void loginPost(String username, String password) {
+
+        Call<ServerResponse> call = service.login(username,password);
 
         call.enqueue(new Callback<ServerResponse>() {
             @Override
@@ -64,22 +71,6 @@ public class Communicator {
     }
 
     public void registerPost(String username, String email, String password) {
-
-        //Here a logging interceptor is created
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        //The logging interceptor will be added to the http client
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
-
-        //The Retrofit builder will have the client attached, in order to get connection logs
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(httpClient.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(SERVER_URL)
-                .build();
-        Interface service = retrofit.create(Interface.class);
 
         Call<ServerResponse> call = service.register(username, email, password);
 

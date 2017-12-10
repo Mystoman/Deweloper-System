@@ -14,24 +14,36 @@
         android:id="@+id/registerUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
         android:hint="@string/login_hint_username"/>
 
     <EditText
         android:id="@+id/registerEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
         android:hint="@string/register_hint_email"/>
 
     <EditText
         android:id="@+id/registerPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
         android:hint="@string/login_hint_password"/>
 
     <EditText
         android:id="@+id/registerPasswordCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
         android:hint="@string/register_hint_password"/>
 
     <Button

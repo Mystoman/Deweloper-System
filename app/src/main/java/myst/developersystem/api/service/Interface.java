@@ -25,9 +25,8 @@ public interface Interface {
     );
 
     @FormUrlEncoded
-    @POST("/poststuff")
-    Call<ServerResponse> post(
-            @Field("method") String method,
+    @POST("/login")
+    Call<ServerResponse> login(
             @Field("username") String username,
             @Field("password") String password
     );

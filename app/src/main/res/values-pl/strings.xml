@@ -6,4 +6,7 @@
     <string name="login_hint_password">Hasło:</string>
     <string name="login_hint_username">Login:</string>
     <string name="title_activity_register">Rejestracja</string>
+    <string name="title_activity_login">Logowanie</string>
+    <string name="register_hint_email">Adres e-mail</string>
+    <string name="register_hint_password">Hasło:</string>
 </resources>
