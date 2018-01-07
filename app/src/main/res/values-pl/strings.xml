@@ -8,5 +8,7 @@
     <string name="title_activity_register">Rejestracja</string>
     <string name="title_activity_login">Logowanie</string>
     <string name="register_hint_email">Adres e-mail</string>
-    <string name="register_hint_password">Hasło:</string>
+    <string name="register_hint_password">Powtórz hasło:</string>
+    <string name="button_logout">Wyloguj się</string>
+    <string name="title_activity_dashboard">Panel</string>
 </resources>

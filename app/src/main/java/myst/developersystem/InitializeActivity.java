@@ -30,7 +30,7 @@ public class InitializeActivity extends AppCompatActivity {
         new Runnable() {
             public void run() {
                 if(checkSession()) {
-                    usePost(username, password);
+                    sendPostRequest();
                 } else {
                     gotoLogin();
                 }
@@ -39,14 +39,10 @@ public class InitializeActivity extends AppCompatActivity {
     }
 
     private boolean checkSession() {
-        if(username.equals("none") || password.equals("none")) {
-            return false;
-        } else {
-            return true;
-        }
+        return username.equals("none") || password.equals("none");
     }
 
-    private void usePost(String username, String password) {
+    private void sendPostRequest() {
         communicator = new Communicator();
         communicator.loginPost(username, password);
     }
@@ -62,19 +58,22 @@ public class InitializeActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
+    public void onStart(){
+        super.onStart();
         BusProvider.getInstance().register(this);
     }
 
     @Override
-    public void onPause(){
-        super.onPause();
+    public void onStop(){
+        super.onStop();
         BusProvider.getInstance().unregister(this);
     }
 
     @Subscribe
     public void onServerEvent(ServerEvent serverEvent){
+        if(serverEvent.getServerResponse().getStatus().equals("fail")) {
+            gotoLogin();
+        }
         gotoDashboard();
     }
 }

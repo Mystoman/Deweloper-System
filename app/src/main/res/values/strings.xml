@@ -1,14 +1,21 @@
 <resources>
+    <!-- general -->
     <string name="app_name">Developer System</string>
 
+    <!-- titles -->
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <!-- hints -->
     <string name="login_hint_username">Username:</string>
     <string name="login_hint_password">Password:</string>
-    <string name="login_button_submit">Login</string>
-    <string name="login_button_register">Create new account</string>
-
     <string name="register_hint_email">E-mail address:</string>
     <string name="register_hint_password">Re-enter password:</string>
 
-    <string name="title_activity_register">Register</string>
-    <string name="title_activity_login">Login</string>
+    <!-- buttons -->
+    <string name="login_button_submit">Login</string>
+    <string name="login_button_register">Create new account</string>
+    <string name="button_logout">Logout</string>
+
 </resources>

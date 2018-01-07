@@ -33,18 +33,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usernameET = (EditText)findViewById(R.id.usernameInput);
-        passwordET = (EditText)findViewById(R.id.passwordInput);
-        passwordET.setTransformationMethod(new PasswordTransformationMethod());
+        initVariables();
 
-        loginButton = (Button)findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = usernameET.getText().toString();
-                password = passwordET.getText().toString();
-                hashedPassword = HashPassword.sha256(password);
-                usePost(username, hashedPassword);
+                sendPostRequest();
             }
         });
 
@@ -57,9 +51,19 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void usePost(String username, String password) {
+    private void initVariables() {
+        usernameET = (EditText)findViewById(R.id.usernameInput);
+        passwordET = (EditText)findViewById(R.id.passwordInput);
+        passwordET.setTransformationMethod(new PasswordTransformationMethod());
+        loginButton = (Button)findViewById(R.id.loginButton);
+    }
+
+    private void sendPostRequest() {
+        username = usernameET.getText().toString();
+        password = passwordET.getText().toString();
+        hashedPassword = HashPassword.sha256(password);
         communicator = new Communicator();
-        communicator.loginPost(username, password);
+        communicator.loginPost(username, hashedPassword);
     }
 
     private void gotoRegister() {
@@ -73,20 +77,24 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
+    public void onStart(){
+        super.onStart();
         BusProvider.getInstance().register(this);
     }
 
     @Override
-    public void onPause(){
-        super.onPause();
+    public void onStop(){
+        super.onStop();
         BusProvider.getInstance().unregister(this);
     }
 
     @Subscribe
     public void onServerEvent(ServerEvent serverEvent){
         Toast.makeText(this, serverEvent.getServerResponse().getMessage(), Toast.LENGTH_SHORT).show();
+
+        if(serverEvent.getServerResponse().getStatus().equals("fail")) {
+            return;
+        }
 
         SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, 0).edit();
         editor.putString("username", username);

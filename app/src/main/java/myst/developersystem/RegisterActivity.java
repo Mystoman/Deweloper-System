@@ -35,56 +35,67 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        initVariables();
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    setVariables();
+                    emptyFields();
+                    validEmail();
+                    validPassword();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                sendPostRequest();
+            }
+        });
+    }
+
+    private void initVariables() {
         usernameET = (EditText)findViewById(R.id.registerUsername);
         emailET = (EditText)findViewById(R.id.registerEmail);
         passwordET = (EditText)findViewById(R.id.registerPassword);
         passwordCheckET = (EditText)findViewById(R.id.registerPasswordCheck);
         passwordET.setTransformationMethod(new PasswordTransformationMethod());
         passwordCheckET.setTransformationMethod(new PasswordTransformationMethod());
-
         registerButton = (Button)findViewById(R.id.registerButton);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                username = usernameET.getText().toString();
-                email = emailET.getText().toString();
-                password = passwordET.getText().toString();
-                passwordCheck = passwordCheckET.getText().toString();
-                inputs = new ArrayList<>(Arrays.asList(username, email, password, passwordCheck));
-                if(emptyFields(inputs)) {
-                    Toast.makeText(getApplicationContext(), "Nie zostały wypełnione wszystkie pola", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(!validEmail(email)) {
-                    Toast.makeText(getApplicationContext(), "Niepoprawny adres e-mail!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(!validPassword(password, passwordCheck)) {
-                    Toast.makeText(getApplicationContext(), "Hasła nie są takie same!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                hashedPassword = HashPassword.sha256(password);
-                communicator = new Communicator();
-                communicator.registerPost(username, email, hashedPassword);
-            }
-        });
     }
 
-    private boolean emptyFields(ArrayList<String> inputs) {
+    private void setVariables() {
+        username = usernameET.getText().toString();
+        email = emailET.getText().toString();
+        password = passwordET.getText().toString();
+        passwordCheck = passwordCheckET.getText().toString();
+        inputs = new ArrayList<>(Arrays.asList(username, email, password, passwordCheck));
+    }
+
+    private void sendPostRequest() {
+        hashedPassword = HashPassword.sha256(password);
+        communicator = new Communicator();
+        communicator.registerPost(username, email, hashedPassword);
+    }
+
+    private void emptyFields() throws Exception {
         for (String input : inputs) {
             if(input == null || input.isEmpty()) {
-                return true;
+                throw new Exception("Nie zostały wypełnione wszystkie pola.");
             }
         }
-        return false;
     }
 
-    private boolean validEmail(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    private void validEmail() throws Exception {
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            throw new Exception("Niepoprawny adres e-mail.");
+        }
     }
 
-    private boolean validPassword(String password, String passwordCheck) {
-        return password.equals(passwordCheck);
+    private void validPassword() throws Exception {
+        if(!password.equals(passwordCheck)) {
+            throw new Exception("Hasła nie są takie same");
+        }
     }
 
     private void gotoLogin() {
@@ -93,20 +104,25 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
+    public void onStart(){
+        super.onStart();
         BusProvider.getInstance().register(this);
     }
 
     @Override
-    public void onPause(){
-        super.onPause();
+    public void onStop(){
+        super.onStop();
         BusProvider.getInstance().unregister(this);
     }
 
     @Subscribe
     public void onServerEvent(ServerEvent serverEvent){
         Toast.makeText(this, serverEvent.getServerResponse().getMessage(), Toast.LENGTH_SHORT).show();
+
+        if(serverEvent.getServerResponse().getStatus().equals("fail")) {
+            return;
+        }
+
         gotoLogin();
     }
 
