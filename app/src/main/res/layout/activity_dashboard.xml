@@ -3,13 +3,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activityPadding"
     tools:context="myst.developersystem.DashboardActivity">
 
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/button_logout"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_marginBottom="@dimen/smallMargin">
+            <TextView
+                style="@style/TableCellDefault"
+                android:text="@string/label_name"/>
+            <TextView
+                style="@style/TableCellDefault"
+                android:gravity="right"
+                android:text="placeholder username"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginBottom="@dimen/smallMargin">
+            <TextView
+                style="@style/TableCellDefault"
+                android:text="@string/label_email"/>
+            <TextView
+                style="@style/TableCellDefault"
+                android:gravity="right"
+                android:text="placeholder e-mail"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginBottom="@dimen/smallMargin">
+            <TextView
+                style="@style/TableCellDefault"
+                android:text="@string/label_created"/>
+            <TextView
+                style="@style/TableCellDefault"
+                android:gravity="right"
+                android:text="placeholder timestamp"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginBottom="@dimen/smallMargin">
+            <TextView
+                style="@style/TableCellDefault"
+                android:text="@string/label_investments_count"/>
+            <TextView
+                style="@style/TableCellDefault"
+                android:gravity="right"
+                android:text="60"/>
+        </TableRow>
+    </TableLayout>
+
+    <!-- Task Bar -->
+    <TableLayout style="@style/TaskBar">
+        <TableRow>
+            <Button
+                android:id="@+id/gotoInvestments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_margin="@dimen/taskBarHack"
+                android:text="@string/button_investments"/>
+            <ImageButton
+                android:id="@+id/settingsButton"
+                style="@style/ButtonSettings"/>
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

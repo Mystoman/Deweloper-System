@@ -3,19 +3,29 @@
     <string name="app_name">Developer System</string>
 
     <!-- titles -->
-    <string name="title_activity_register">Register</string>
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_login">Login</string>
+    <string name="title_register">Register</string>
+    <string name="title_dashboard">Dashboard</string>
 
     <!-- hints -->
-    <string name="login_hint_username">Username:</string>
-    <string name="login_hint_password">Password:</string>
-    <string name="register_hint_email">E-mail address:</string>
-    <string name="register_hint_password">Re-enter password:</string>
+    <string name="hint_username">Username:</string>
+    <string name="hint_password">Password:</string>
+    <string name="hint_password_repeat">Re-enter password:</string>
+    <string name="hint_email">E-mail address:</string>
 
     <!-- buttons -->
-    <string name="login_button_submit">Login</string>
-    <string name="login_button_register">Create new account</string>
+    <string name="button_login">Login</string>
+    <string name="button_goto_register">Dont have an account yet? Create one!</string>
+    <string name="button_register">Create new account</string>
     <string name="button_logout">Logout</string>
+    <string name="button_investments">View your investments</string>
+
+    <!-- labels -->
+    <string name="label_name">Username:</string>
+    <string name="label_email">E-mail address:</string>
+    <string name="label_created">Created on:</string>
+    <string name="label_investments_count">Number of investments:</string>
+
+    <string name="placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum ante felis, eu porta arcu semper in. Morbi laoreet justo mauris, ac euismod mi porta sit amet. Sed feugiat sapien quis posuere bibendum. Cras sit amet nunc sed nulla auctor aliquam. Vestibulum accumsan porttitor sapien, in posuere dui tincidunt id. Donec lacinia risus quam, ut pulvinar ipsum blandit placerat. Donec ipsum augue, varius eget ultrices a, feugiat et augue. Sed mollis dolor ac tellus rhoncus laoreet. Sed sit amet ligula a lorem fermentum vulputate. Mauris luctus, est viverra mattis semper, erat justo cursus neque, sed porttitor augue tellus ac risus. Nam sed sodales ligula, sit amet imperdiet dolor. In luctus quis lacus eu mollis. In laoreet placerat vehicula. Quisque varius risus lacus, eget rhoncus ex ornare tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sed sapien convallis, mollis diam sed, ultricies leo. Vivamus sagittis sem vel erat porttitor, vitae aliquam metus varius. Donec mollis, odio at egestas blandit, lacus purus aliquam arcu, vitae tincidunt lectus justo sit amet leo. Donec ex libero, suscipit sed mauris ac, dictum pulvinar nulla. Donec efficitur dui a urna condimentum, vitae interdum lacus consectetur. Sed et ipsum ligula. Integer aliquet euismod quam, pretium bibendum risus ornare non. Sed volutpat volutpat lobortis. Praesent orci urna, placerat nec ultricies ut, sollicitudin eu ipsum. Sed vel porttitor dolor. Phasellus posuere dui sit amet sapien porttitor viverra. Nulla augue quam, volutpat sed gravida nec, imperdiet vel ipsum. Vestibulum sed accumsan urna, sit amet cursus odio. Phasellus dapibus rutrum euismod. Phasellus at velit augue. Nulla vehicula tristique ligula vel lacinia. Morbi sit amet lectus eget nunc porta efficitur ut id erat. Donec lectus nisi, scelerisque nec nisl sed, tempor imperdiet tellus. Aenean volutpat orci a nulla tristique, at porta eros pellentesque. Nam interdum augue massa, at tincidunt sem gravida in. Vestibulum id nunc ex. Donec ultricies, massa vel molestie sollicitudin, metus enim hendrerit magna, et condimentum leo odio bibendum risus. Sed eleifend, tellus vel viverra sagittis, metus purus ornare ante, vitae efficitur diam ante eget quam. Vestibulum pellentesque ornare sodales. Aliquam laoreet erat quis purus lobortis condimentum. Quisque et turpis ut arcu ultricies aliquam. Fusce ut nunc et ex pretium lobortis non vel ligula. Proin pharetra rutrum ante. Nam sollicitudin commodo nibh. Mauris sit amet neque magna. Integer ullamcorper viverra lobortis. Nunc ante massa, dignissim ut elementum et, dapibus at massa. Suspendisse a luctus augue, nec tristique est. Maecenas sed viverra eros. Nunc condimentum interdum nulla eu maximus. Donec luctus, risus eu posuere consequat, urna ex sodales lectus, sit amet pellentesque ex nisl quis dolor. Sed nulla mauris, molestie id augue vel, feugiat accumsan odio. Suspendisse cursus varius nisi vel convallis. Aliquam quis egestas lacus. Vivamus nec congue libero. </string>
 
 </resources>

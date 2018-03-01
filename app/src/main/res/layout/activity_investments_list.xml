@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activityPadding"
+    tools:context="myst.developersystem.DashboardActivity">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/taskBarHeight">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/scrollBarWidth">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/placeholderSize"
+                android:text="@string/placeholder"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Task Bar -->
+    <TableLayout style="@style/TaskBar">
+        <TableRow>
+            <Button
+                android:id="@+id/gotoInvestments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_margin="@dimen/taskBarHack"
+                android:text="@string/button_investments"/>
+            <ImageButton
+                android:id="@+id/settingsButton"
+                style="@style/ButtonSettings"/>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

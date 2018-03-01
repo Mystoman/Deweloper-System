@@ -1,11 +1,63 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Default application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- main -->
+        <item name="colorPrimary">@color/actionBarBackground</item>
+        <item name="colorPrimaryDark">@color/toolBarBackground</item>
+        <item name="colorAccent">@color/colorActive</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+
+        <!-- edit texts -->
+        <item name="android:colorControlNormal">@color/colorAccent</item>
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:editTextColor">@color/colorPrimary</item>
+
+        <!-- buttons -->
+        <item name="android:buttonStyle">@style/ButtonDefault</item>
+
+        <!-- text view -->
+        <item name="android:textViewStyle">@style/TextViewDefault</item>
+    </style>
+
+    <!-- Default buttons style -->
+    <style name="ButtonDefault" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:textColor">@color/buttonLabel</item>
+        <item name="android:background">@color/buttonBackground</item>
+    </style>
+
+    <!-- Default text view style -->
+    <style name="TextViewDefault">
+        <item name="android:textColor">@color/buttonLabel</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- Default table cell style -->
+    <style name="TableCellDefault">
+        <item name="android:layout_width">@dimen/tableCellWidth</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- Settings button style -->
+    <style name="ButtonSettings">
+        <item name="android:layout_width">@dimen/tableCellWidth</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.15</item>
+        <item name="android:padding">@dimen/taskBarHack</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:tint">@color/buttonLabel</item>
+        <item name="android:src">@drawable/ic_settings</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- Task Bar style -->
+    <style name="TaskBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:stretchColumns">1</item>
     </style>
 
 </resources>

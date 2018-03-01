@@ -3,24 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activityPadding"
     tools:context="myst.developersystem.LoginActivity">
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/smallMargin"
+        android:src="@drawable/logo"/>
 
     <EditText
         android:id="@+id/usernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/logoImage"
+        android:layout_marginBottom="@dimen/smallMargin"
         android:inputType="text"
         android:maxLines="1"
         android:imeOptions="actionNext"
-        android:hint="@string/login_hint_username"/>
+        android:hint="@string/hint_username"/>
 
     <EditText
         android:id="@+id/passwordInput"
         android:layout_below="@id/usernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/smallMargin"
         android:inputType="text"
-        android:hint="@string/login_hint_password"/>
+        android:hint="@string/hint_password"/>
 
     <Button
         android:id="@+id/loginButton"
@@ -28,14 +39,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordInput"
         android:layout_centerInParent="true"
-        android:text="@string/login_button_submit"/>
+        android:text="@string/button_login"/>
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:text="@string/login_button_register"/>
+        android:layout_marginBottom="@dimen/smallMargin"
+        android:text="@string/button_goto_register"/>
 
 </RelativeLayout>

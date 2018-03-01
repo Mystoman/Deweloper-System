@@ -29,16 +29,16 @@ public class InitializeActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
         new Runnable() {
             public void run() {
-                if(checkSession()) {
-                    sendPostRequest();
-                } else {
+                if(noSession()) {
                     gotoLogin();
+                } else {
+                    sendPostRequest();
                 }
             }
         }, 2000);
     }
 
-    private boolean checkSession() {
+    private boolean noSession() {
         return username.equals("none") || password.equals("none");
     }
 
