@@ -12,13 +12,20 @@
     <string name="hint_password">Password:</string>
     <string name="hint_password_repeat">Re-enter password:</string>
     <string name="hint_email">E-mail address:</string>
+    <string name="hint_investment_name">Investment name:</string>
+    <string name="hint_investment_city">City:</string>
+    <string name="hint_investment_postal">Postal code:</string>
+    <string name="hint_investment_street">Street:</string>
 
     <!-- buttons -->
+    <string name="button_edit">Edit</string>
+    <string name="button_save">Save</string>
     <string name="button_login">Login</string>
     <string name="button_goto_register">Dont have an account yet? Create one!</string>
     <string name="button_register">Create new account</string>
     <string name="button_logout">Logout</string>
     <string name="button_investments">View your investments</string>
+    <string name="button_add_investment">Add new investment</string>
 
     <!-- labels -->
     <string name="label_name">Username:</string>

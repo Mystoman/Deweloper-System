@@ -24,11 +24,13 @@
             android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_login" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_dashboard" />
-        <activity android:name=".InvestmentsListActivity"></activity>
+        <activity android:name=".InvestmentsListActivity" />
+        <activity android:name=".InvestmentFormActivity"></activity>
     </application>
 
 </manifest>

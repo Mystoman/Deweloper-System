@@ -1,13 +1,15 @@
-package myst.developersystem.api.model;
+package myst.developersystem.api.model.responses;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Created by Michal on 11.11.17.
  */
 
-public class ServerResponse {
+public class BasicServerResponse implements ResponsesInterface<String> {
     @SerializedName("status")
     @Expose
     private String status;
@@ -16,7 +18,7 @@ public class ServerResponse {
     private String message;
     @SerializedName("data")
     @Expose
-    private String data;
+    private List<String> data;
 
     public String getStatus() {
         return status;
@@ -30,15 +32,15 @@ public class ServerResponse {
         return message;
     }
 
-    public void setMessage(String data) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public String getData() {
+    public List<String> getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(List<String> data) {
         this.data = data;
     }
 }

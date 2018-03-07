@@ -5,37 +5,25 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activityPadding"
     tools:context="myst.developersystem.DashboardActivity">
-    
-    <ScrollView
+
+    <ListView
+        android:id="@+id/investmentsList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/taskBarHeight">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="@dimen/scrollBarWidth">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/placeholderSize"
-                android:text="@string/placeholder"/>
-
-        </LinearLayout>
-
-    </ScrollView>
+    </ListView>
 
     <!-- Task Bar -->
     <TableLayout style="@style/TaskBar">
         <TableRow>
             <Button
-                android:id="@+id/gotoInvestments"
+                android:id="@+id/addInvestment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:layout_margin="@dimen/taskBarHack"
-                android:text="@string/button_investments"/>
+                android:text="@string/button_add_investment"/>
             <ImageButton
                 android:id="@+id/settingsButton"
                 style="@style/ButtonSettings"/>

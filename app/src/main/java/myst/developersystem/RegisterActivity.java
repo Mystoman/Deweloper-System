@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -117,12 +115,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Subscribe
     public void onServerEvent(ServerEvent serverEvent){
-        Toast.makeText(this, serverEvent.getServerResponse().getMessage(), Toast.LENGTH_SHORT).show();
-
         if(serverEvent.getServerResponse().getStatus().equals("fail")) {
             return;
         }
 
+        Toast.makeText(this, serverEvent.getServerResponse().getMessage(), Toast.LENGTH_SHORT).show();
         gotoLogin();
     }
 
