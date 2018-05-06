@@ -13,16 +13,14 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import myst.developersystem.api.communicator.Communicator;
 import myst.developersystem.api.model.BusProvider;
-import myst.developersystem.api.model.InvestmentsData;
+import myst.developersystem.api.model.json.InvestmentsData;
 import myst.developersystem.api.model.ServerEvent;
-import myst.developersystem.classes.HashPassword;
 
 public class InvestmentFormActivity extends AppCompatActivity {
 
@@ -32,7 +30,6 @@ public class InvestmentFormActivity extends AppCompatActivity {
     private Button submitButton;
     private ArrayList<String> inputs;
     private List<Address> addresses;
-    private final static String TAG = "InvestmentFormActivity";
     private final static String PREFS_NAME = "loginDetails";
 
     @Override

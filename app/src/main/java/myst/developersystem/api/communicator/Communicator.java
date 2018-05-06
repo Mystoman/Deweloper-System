@@ -10,6 +10,7 @@ import myst.developersystem.api.model.BusProvider;
 import myst.developersystem.api.model.ErrorEvent;
 import myst.developersystem.api.model.ServerEvent;
 import myst.developersystem.api.model.responses.BasicServerResponse;
+import myst.developersystem.api.model.responses.BuildingServerResponse;
 import myst.developersystem.api.model.responses.InvestmentsServerResponse;
 import myst.developersystem.api.service.CallsInterface;
 import okhttp3.OkHttpClient;
@@ -86,7 +87,6 @@ public class Communicator {
 
             @Override
             public void onFailure(Call<BasicServerResponse> call, Throwable t) {
-                // handle execution failures like no internet connectivity
                 BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
                 Log.d(TAG,"Nope");
             }
@@ -107,7 +107,6 @@ public class Communicator {
 
             @Override
             public void onFailure(Call<InvestmentsServerResponse> call, Throwable t) {
-                // handle execution failures like no internet connectivity
                 BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
                 Log.d(TAG,"A");
             }
@@ -128,7 +127,6 @@ public class Communicator {
 
             @Override
             public void onFailure(Call<InvestmentsServerResponse> call, Throwable t) {
-                // handle execution failures like no internet connectivity
                 BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
                 Log.d(TAG,"A");
             }
@@ -149,7 +147,6 @@ public class Communicator {
 
             @Override
             public void onFailure(Call<BasicServerResponse> call, Throwable t) {
-                // handle execution failures like no internet connectivity
                 BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
                 Log.d(TAG,"A");
             }
@@ -170,7 +167,106 @@ public class Communicator {
 
             @Override
             public void onFailure(Call<BasicServerResponse> call, Throwable t) {
-                // handle execution failures like no internet connectivity
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void deleteInvestment(String username, String password, String investmentID) {
+
+        Call<BasicServerResponse> call = service.deleteInvestment(username, password, investmentID);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void buildingList(String username, String password, String investmentID) {
+
+        Call<BuildingServerResponse> call = service.buildingList(username, password, investmentID);
+
+        call.enqueue(new Callback<BuildingServerResponse>() {
+            @Override
+            public void onResponse(Call<BuildingServerResponse> call, Response<BuildingServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BuildingServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void loadBuildingID(String username, String password, String buildingID) {
+
+        Call<BuildingServerResponse> call = service.loadBuildingData(username, password, buildingID);
+
+        call.enqueue(new Callback<BuildingServerResponse>() {
+            @Override
+            public void onResponse(Call<BuildingServerResponse> call, Response<BuildingServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BuildingServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void addBuilding(String username, String password, ArrayList<String> data) {
+
+        Call<BasicServerResponse> call = service.addBuilding(username, password, data);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void updateBuilding(String username, String password, String buildingID, ArrayList<String> data) {
+
+        Call<BasicServerResponse> call = service.updateBuilding(username, password, buildingID, data);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
                 BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
                 Log.d(TAG,"A");
             }

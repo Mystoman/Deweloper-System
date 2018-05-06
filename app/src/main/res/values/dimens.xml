@@ -6,4 +6,5 @@
     <dimen name="taskBarHeight">65dp</dimen>
     <dimen name="scrollBarWidth">8dp</dimen>
     <dimen name="placeholderSize">25sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

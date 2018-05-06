@@ -1,4 +1,4 @@
-package myst.developersystem.api.model;
+package myst.developersystem.api.model.json;
 
 /**
  * Created by Michal on 01.03.18.

@@ -5,13 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import myst.developersystem.api.model.json.InvestmentsData;
+import myst.developersystem.api.model.json.BuildingData;
 
 /**
- * Created by Michal on 11.11.17.
+ * Created by Michal on 03.05.18.
  */
 
-public class InvestmentsServerResponse implements ResponsesInterface<InvestmentsData> {
+public class BuildingServerResponse implements ResponsesInterface<BuildingData> {
+
     @SerializedName("status")
     @Expose
     private String status;
@@ -20,7 +21,7 @@ public class InvestmentsServerResponse implements ResponsesInterface<Investments
     private String message;
     @SerializedName("data")
     @Expose
-    private List<InvestmentsData> data;
+    private List<BuildingData> data;
 
     public String getStatus() {
         return status;
@@ -38,11 +39,12 @@ public class InvestmentsServerResponse implements ResponsesInterface<Investments
         this.message = message;
     }
 
-    public List<InvestmentsData> getData() {
+    public List<BuildingData> getData() {
         return data;
     }
 
-    public void setData(List<InvestmentsData> data) {
+    public void setData(List<BuildingData> data) {
         this.data = data;
     }
+
 }

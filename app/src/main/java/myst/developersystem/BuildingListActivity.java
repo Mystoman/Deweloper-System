@@ -16,59 +16,53 @@ import java.util.ArrayList;
 
 import myst.developersystem.api.communicator.Communicator;
 import myst.developersystem.api.model.BusProvider;
-import myst.developersystem.api.model.json.InvestmentsData;
 import myst.developersystem.api.model.ServerEvent;
-import myst.developersystem.classes.InvestmentsRowAdapter;
+import myst.developersystem.api.model.json.BuildingData;
+import myst.developersystem.classes.BuildingsRowAdapter;
 
-public class InvestmentsListActivity extends AppCompatActivity {
+public class BuildingListActivity extends AppCompatActivity {
 
     private Communicator communicator;
-    private String username, password;
+    private String username, password, investmentID;
     private ListView list;
-    private ArrayAdapter<InvestmentsData> adapter;
-    private Button addInvestmentButton;
+    private ArrayAdapter<BuildingData> adapter;
+    private Button addBuildingButton;
     private ImageButton settingsButton;
     private final static String PREFS_NAME = "loginDetails";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_investments_list);
+        setContentView(R.layout.activity_building_list);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         username = settings.getString("username", "none");
         password = settings.getString("password", "none");
-        sendPostRequest();
 
-        addInvestmentButton = (Button)findViewById(R.id.addInvestment);
-        addInvestmentButton.setOnClickListener(new View.OnClickListener() {
+        Intent intent = getIntent();
+        if(intent.hasExtra("INVESTMENT_ID")) {
+            investmentID = intent.getStringExtra("INVESTMENT_ID");
+            sendPostRequest();
+        }
+
+        addBuildingButton = (Button)findViewById(R.id.addBuilding);
+        addBuildingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoAddInvestment();
+                gotoAddBuilding();
             }
         });
 
-        settingsButton = (ImageButton)findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, 0).edit();
-                editor.remove("username");
-                editor.remove("password");
-                editor.apply();
-
-                gotoLogin();
-            }
-        });
     }
 
     private void sendPostRequest() {
         communicator = new Communicator();
-        communicator.investmentList(username, password);
+        communicator.buildingList(username, password, investmentID);
     }
 
-    private void gotoAddInvestment() {
-        Intent intent = new Intent(this, InvestmentFormActivity.class);
+    private void gotoAddBuilding() {
+        Intent intent = new Intent(this, BuildingFormActivity.class);
+        intent.putExtra("INVESTMENT_ID", investmentID);
         startActivity(intent);
     }
 
@@ -95,11 +89,12 @@ public class InvestmentsListActivity extends AppCompatActivity {
             gotoLogin();
         }
 
-        ArrayList<InvestmentsData> investmentsDataList = new ArrayList<>();
-        investmentsDataList.addAll(serverEvent.getServerResponse().getData());
+        ArrayList<BuildingData> buildingsDataList = new ArrayList<>();
+        buildingsDataList.addAll(serverEvent.getServerResponse().getData());
 
-        list = (ListView) findViewById(R.id.investmentsList);
-        adapter = new InvestmentsRowAdapter(this, investmentsDataList);
+        list = (ListView) findViewById(R.id.buildingsList);
+        adapter = new BuildingsRowAdapter(this, buildingsDataList);
         list.setAdapter(adapter);
     }
+
 }

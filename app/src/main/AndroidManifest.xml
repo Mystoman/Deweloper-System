@@ -24,13 +24,28 @@
             android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_login" />
+            android:label="@string/title_login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_dashboard" />
-        <activity android:name=".InvestmentsListActivity" />
-        <activity android:name=".InvestmentFormActivity"></activity>
+        <activity
+            android:name=".InvestmentsListActivity"
+            android:label="@string/title_investment_list"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".InvestmentFormActivity"
+            android:label="@string/title_investment_manage"
+            android:parentActivityName=".InvestmentsListActivity" />
+        <activity
+            android:name=".InvestmentDeleteActivity"
+            android:label="@string/title_investment_delete"
+            android:parentActivityName=".InvestmentsListActivity" />
+        <activity
+            android:name=".BuildingListActivity"
+            android:label="@string/title_building_list"
+            android:parentActivityName=".InvestmentsListActivity" />
+        <activity android:name=".BuildingFormActivity"></activity>
     </application>
 
 </manifest>
