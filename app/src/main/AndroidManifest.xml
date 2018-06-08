@@ -45,7 +45,17 @@
             android:name=".BuildingListActivity"
             android:label="@string/title_building_list"
             android:parentActivityName=".InvestmentsListActivity" />
-        <activity android:name=".BuildingFormActivity"></activity>
+        <activity
+            android:name=".BuildingFormActivity"
+            android:label="@string/title_building_manage"
+            android:parentActivityName=".BuildingListActivity" />
+        <activity
+            android:name=".BuildingDeleteActivity"
+            android:label="@string/title_building_delete"
+            android:parentActivityName=".BuildingListActivity" />
+        <activity android:name=".FlatListActivity" />
+        <activity android:name=".FlatFormActivity" />
+        <activity android:name=".FlatSearchActivity"></activity>
     </application>
 
 </manifest>

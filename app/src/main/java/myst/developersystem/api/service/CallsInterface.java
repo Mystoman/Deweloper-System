@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import myst.developersystem.api.model.responses.BasicServerResponse;
 import myst.developersystem.api.model.responses.BuildingServerResponse;
+import myst.developersystem.api.model.responses.FlatServerResponse;
 import myst.developersystem.api.model.responses.InvestmentsServerResponse;
+import myst.developersystem.api.model.responses.UserServerResponse;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
@@ -25,12 +27,13 @@ public interface CallsInterface {
     Call<BasicServerResponse> register(
             @Field("username") String username,
             @Field("email") String email,
-            @Field("password") String password
+            @Field("password") String password,
+            @Field("role") String role
     );
 
     @FormUrlEncoded
     @POST("/login")
-    Call<BasicServerResponse> login(
+    Call<UserServerResponse> login(
             @Field("username") String username,
             @Field("password") String password
     );
@@ -105,6 +108,55 @@ public interface CallsInterface {
             @Header("password") String password,
             @Field("buildingID") String buildingID,
             @Field("data[]") ArrayList<String> data
+    );
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "/deleteBuilding", hasBody = true)
+    Call<BasicServerResponse> deleteBuilding(
+            @Header("username") String username,
+            @Header("password") String password,
+            @Field("buildingID") String buildingID
+    );
+
+    @FormUrlEncoded
+    @POST("/flatList")
+    Call<FlatServerResponse> flatList(
+            @Header("username") String username,
+            @Header("password") String password,
+            @Field("buildingID") String buildingID
+    );
+
+    @FormUrlEncoded
+    @POST("/loadFlatData")
+    Call<FlatServerResponse> loadFlatData(
+            @Header("username") String username,
+            @Header("password") String password,
+            @Field("flatID") String flatID
+    );
+
+    @FormUrlEncoded
+    @POST("/addFlat")
+    Call<BasicServerResponse> addFlat(
+            @Header("username") String username,
+            @Header("password") String password,
+            @Field("data[]") ArrayList<String> data
+    );
+
+    @FormUrlEncoded
+    @PUT("/updateFlat")
+    Call<BasicServerResponse> updateFlat(
+            @Header("username") String username,
+            @Header("password") String password,
+            @Field("flatID") String flatID,
+            @Field("data[]") ArrayList<String> data
+    );
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "/deleteBuilding", hasBody = true)
+    Call<BasicServerResponse> deleteFlat(
+            @Header("username") String username,
+            @Header("password") String password,
+            @Field("flatID") String flatID
     );
 
 }

@@ -17,15 +17,15 @@ import java.util.ArrayList;
 import myst.developersystem.api.communicator.Communicator;
 import myst.developersystem.api.model.BusProvider;
 import myst.developersystem.api.model.ServerEvent;
-import myst.developersystem.api.model.json.BuildingData;
-import myst.developersystem.classes.BuildingsRowAdapter;
+import myst.developersystem.api.model.json.FlatData;
+import myst.developersystem.classes.FlatsRowAdapter;
 
-public class BuildingListActivity extends AppCompatActivity {
+public class FlatListActivity extends AppCompatActivity {
 
     private Communicator communicator;
-    private String username, password, investmentID;
+    private String username, password, buildingID;
     private ListView list;
-    private ArrayAdapter<BuildingData> adapter;
+    private ArrayAdapter<FlatData> adapter;
     private Button addBuildingButton;
     private ImageButton settingsButton;
     private final static String PREFS_NAME = "loginDetails";
@@ -33,15 +33,15 @@ public class BuildingListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_building_list);
+        setContentView(R.layout.activity_flat_list);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         username = settings.getString("username", "none");
         password = settings.getString("password", "none");
 
         Intent intent = getIntent();
-        if(intent.hasExtra("INVESTMENT_ID")) {
-            investmentID = intent.getStringExtra("INVESTMENT_ID");
+        if(intent.hasExtra("BUILDING_ID")) {
+            buildingID = intent.getStringExtra("BUILDING_ID");
             sendPostRequest();
         }
 
@@ -49,19 +49,19 @@ public class BuildingListActivity extends AppCompatActivity {
         addBuildingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoAddBuilding();
+                gotoAddFlat();
             }
         });
     }
 
     private void sendPostRequest() {
         communicator = new Communicator();
-        communicator.buildingList(username, password, investmentID);
+        communicator.flatList(username, password, buildingID);
     }
 
-    private void gotoAddBuilding() {
-        Intent intent = new Intent(this, BuildingFormActivity.class);
-        intent.putExtra("INVESTMENT_ID", investmentID);
+    private void gotoAddFlat() {
+        Intent intent = new Intent(this, FlatFormActivity.class);
+        intent.putExtra("BUILDING_ID", buildingID);
         startActivity(intent);
     }
 
@@ -88,11 +88,11 @@ public class BuildingListActivity extends AppCompatActivity {
             gotoLogin();
         }
 
-        ArrayList<BuildingData> buildingsDataList = new ArrayList<>();
-        buildingsDataList.addAll(serverEvent.getServerResponse().getData());
+        ArrayList<FlatData> flatsDataList = new ArrayList<>();
+        flatsDataList.addAll(serverEvent.getServerResponse().getData());
 
-        list = (ListView) findViewById(R.id.buildingsList);
-        adapter = new BuildingsRowAdapter(this, buildingsDataList);
+        list = (ListView) findViewById(R.id.flatList);
+        adapter = new FlatsRowAdapter(this, flatsDataList);
         list.setAdapter(adapter);
     }
 

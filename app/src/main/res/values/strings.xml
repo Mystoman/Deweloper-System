@@ -12,6 +12,9 @@
     <string name="title_building_list">Building list</string>
     <string name="title_building_manage">Manage building</string>
     <string name="title_building_delete">Delete building</string>
+    <string name="title_flat_list">Flat list</string>
+    <string name="title_flat_manage">Manage flat</string>
+    <string name="title_flat_delete">Delete flat</string>
 
     <!-- hints -->
     <string name="hint_username">Username:</string>
@@ -22,6 +25,18 @@
     <string name="hint_investment_city">City:</string>
     <string name="hint_investment_postal">Postal code:</string>
     <string name="hint_investment_street">Street:</string>
+    <string name="hint_building_name">Building name:</string>
+    <string name="hint_building_floors">Number of floors:</string>
+    <string name="hint_building_completion">Date of completion:</string>
+    <string name="hint_flat_number">Flat number:</string>
+    <string name="hint_flat_floor">Flat floor:</string>
+    <string name="hint_flat_area">Flat area:</string>
+    <string name="hint_search_city">City:</string>
+    <string name="hint_search_area_from">Area - from:</string>
+    <string name="hint_search_area_to">Area - to:</string>
+    <string name="hint_search_rooms_from">Rooms - from:</string>
+    <string name="hint_search_rooms_to">Rooms - to:</string>
+    <string name="hint_search_floor">Floor:</string>
 
     <!-- buttons -->
     <string name="button_edit">Edit</string>
@@ -34,12 +49,23 @@
     <string name="button_investments">View your investments</string>
     <string name="button_add_investment">Add new investment</string>
     <string name="button_add_building">Add new building</string>
+    <string name="button_add_flat">Add new flat</string>
+    <string name="button_goto_search">Go to flat search</string>
+    <string name="button_search">Find flats</string>
 
     <!-- labels -->
     <string name="label_name">Username:</string>
     <string name="label_email">E-mail address:</string>
     <string name="label_created">Created on:</string>
     <string name="label_investments_count">Number of investments:</string>
+
+    <!-- spinner items -->
+    <string name="spinner_default">choose option</string>
+    <string name="spinner_to_flats">to flats</string>
+    <string name="spinner_to_buildings">to buildings</string>
+    <string name="spinner_view">view</string>
+    <string name="spinner_edit">edit</string>
+    <string name="spinner_delete">delete</string>
 
     <!-- tags -->
     <item name="tag_investment_id" type="id" />

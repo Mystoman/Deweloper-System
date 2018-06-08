@@ -15,6 +15,7 @@
                 style="@style/TableCellDefault"
                 android:text="@string/label_name"/>
             <TextView
+                android:id="@+id/username"
                 style="@style/TableCellDefault"
                 android:gravity="right"
                 android:text="placeholder username"/>
@@ -25,6 +26,7 @@
                 style="@style/TableCellDefault"
                 android:text="@string/label_email"/>
             <TextView
+                android:id="@+id/email"
                 style="@style/TableCellDefault"
                 android:gravity="right"
                 android:text="placeholder e-mail"/>
@@ -35,19 +37,10 @@
                 style="@style/TableCellDefault"
                 android:text="@string/label_created"/>
             <TextView
+                android:id="@+id/created"
                 style="@style/TableCellDefault"
                 android:gravity="right"
                 android:text="placeholder timestamp"/>
-        </TableRow>
-        <TableRow
-            android:layout_marginBottom="@dimen/smallMargin">
-            <TextView
-                style="@style/TableCellDefault"
-                android:text="@string/label_investments_count"/>
-            <TextView
-                style="@style/TableCellDefault"
-                android:gravity="right"
-                android:text="60"/>
         </TableRow>
     </TableLayout>
 

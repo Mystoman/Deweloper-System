@@ -11,7 +11,9 @@ import myst.developersystem.api.model.ErrorEvent;
 import myst.developersystem.api.model.ServerEvent;
 import myst.developersystem.api.model.responses.BasicServerResponse;
 import myst.developersystem.api.model.responses.BuildingServerResponse;
+import myst.developersystem.api.model.responses.FlatServerResponse;
 import myst.developersystem.api.model.responses.InvestmentsServerResponse;
+import myst.developersystem.api.model.responses.UserServerResponse;
 import myst.developersystem.api.service.CallsInterface;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -55,17 +57,17 @@ public class Communicator {
 
     public void loginPost(String username, String password) {
 
-        Call<BasicServerResponse> call = service.login(username,password);
+        Call<UserServerResponse> call = service.login(username,password);
 
-        call.enqueue(new Callback<BasicServerResponse>() {
+        call.enqueue(new Callback<UserServerResponse>() {
             @Override
-            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+            public void onResponse(Call<UserServerResponse> call, Response<UserServerResponse> response) {
                 BusProvider.getInstance().post(new ServerEvent(response.body()));
                 Log.d(TAG,"Success");
             }
 
             @Override
-            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+            public void onFailure(Call<UserServerResponse> call, Throwable t) {
                 // handle execution failures like no internet connectivity
                 BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
                 Log.d(TAG,"Nope");
@@ -74,9 +76,9 @@ public class Communicator {
 
     }
 
-    public void registerPost(String username, String email, String password) {
+    public void registerPost(String username, String email, String password, String role) {
 
-        Call<BasicServerResponse> call = service.register(username, email, password);
+        Call<BasicServerResponse> call = service.register(username, email, password, role);
 
         call.enqueue(new Callback<BasicServerResponse>() {
             @Override
@@ -257,6 +259,126 @@ public class Communicator {
     public void updateBuilding(String username, String password, String buildingID, ArrayList<String> data) {
 
         Call<BasicServerResponse> call = service.updateBuilding(username, password, buildingID, data);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void deleteBuilding(String username, String password, String buildingID) {
+
+        Call<BasicServerResponse> call = service.deleteBuilding(username, password, buildingID);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void flatList(String username, String password, String buildingID) {
+
+        Call<FlatServerResponse> call = service.flatList(username, password, buildingID);
+
+        call.enqueue(new Callback<FlatServerResponse>() {
+            @Override
+            public void onResponse(Call<FlatServerResponse> call, Response<FlatServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<FlatServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void loadFlatID(String username, String password, String flatID) {
+
+        Call<FlatServerResponse> call = service.loadFlatData(username, password, flatID);
+
+        call.enqueue(new Callback<FlatServerResponse>() {
+            @Override
+            public void onResponse(Call<FlatServerResponse> call, Response<FlatServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<FlatServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void addFlat(String username, String password, ArrayList<String> data) {
+
+        Call<BasicServerResponse> call = service.addFlat(username, password, data);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void updateFlat(String username, String password, String flatID, ArrayList<String> data) {
+
+        Call<BasicServerResponse> call = service.updateFlat(username, password, flatID, data);
+
+        call.enqueue(new Callback<BasicServerResponse>() {
+            @Override
+            public void onResponse(Call<BasicServerResponse> call, Response<BasicServerResponse> response) {
+                BusProvider.getInstance().post(new ServerEvent(response.body()));
+                Log.d(TAG,"Success");
+            }
+
+            @Override
+            public void onFailure(Call<BasicServerResponse> call, Throwable t) {
+                BusProvider.getInstance().post(new ErrorEvent(-2,t.getMessage()));
+                Log.d(TAG,"A");
+            }
+        });
+
+    }
+
+    public void deleteFlat(String username, String password, String flatID) {
+
+        Call<BasicServerResponse> call = service.deleteFlat(username, password, flatID);
 
         call.enqueue(new Callback<BasicServerResponse>() {
             @Override

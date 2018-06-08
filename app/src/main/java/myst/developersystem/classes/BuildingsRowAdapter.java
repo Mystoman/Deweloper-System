@@ -2,25 +2,22 @@ package myst.developersystem.classes;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import myst.developersystem.BuildingDeleteActivity;
 import myst.developersystem.BuildingFormActivity;
-import myst.developersystem.InvestmentDeleteActivity;
-import myst.developersystem.InvestmentFormActivity;
+import myst.developersystem.FlatListActivity;
 import myst.developersystem.R;
 import myst.developersystem.api.model.json.BuildingData;
-import myst.developersystem.api.model.json.InvestmentsData;
 
 /**
  * Created by Michal on 03.05.18.
@@ -54,13 +51,13 @@ public class BuildingsRowAdapter extends ArrayAdapter<BuildingData> {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch(position) {
                     case 1:
-                        //gotoBuildings(currentBuilding.getId());
+                        gotoFlats(currentBuilding.getId());
                         break;
                     case 2:
                         gotoEdit(currentBuilding.getInvestmentID(), currentBuilding.getId());
                         break;
                     case 3:
-                        gotoDelete(currentBuilding.getId(), currentBuilding.getName());
+                        gotoDelete(currentBuilding.getId(), currentBuilding.getName(), currentBuilding.getInvestmentID());
                         break;
                 }
             }
@@ -76,12 +73,18 @@ public class BuildingsRowAdapter extends ArrayAdapter<BuildingData> {
 
     private List<String> spinnerOptions() {
         List<String> options = new ArrayList<String>();
-        options.add("Wybierz operację");
-        options.add("Lista mieszkań");
-        options.add("Edytuj");
-        options.add("Usuń");
+        options.add(activity.getString(R.string.spinner_default));
+        options.add(activity.getString(R.string.spinner_to_flats));
+        options.add(activity.getString(R.string.spinner_edit));
+        options.add(activity.getString(R.string.spinner_delete));
 
         return options;
+    }
+
+    private void gotoFlats(String id) {
+        Intent intent = new Intent(activity, FlatListActivity.class);
+        intent.putExtra("BUILDING_ID", id);
+        activity.startActivity(intent);
     }
 
     private void gotoEdit(String investmentID, String id) {
@@ -91,10 +94,11 @@ public class BuildingsRowAdapter extends ArrayAdapter<BuildingData> {
         activity.startActivity(intent);
     }
 
-    private void gotoDelete(String id, String name) {
-        Intent intent = new Intent(activity, InvestmentDeleteActivity.class);
+    private void gotoDelete(String id, String name, String investmentID) {
+        Intent intent = new Intent(activity, BuildingDeleteActivity.class);
         intent.putExtra("BUILDING_ID", id);
         intent.putExtra("BUILDING_NAME", name);
+        intent.putExtra("INVESTMENT_ID", investmentID);
         activity.startActivity(intent);
     }
 

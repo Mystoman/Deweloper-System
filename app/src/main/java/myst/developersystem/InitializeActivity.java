@@ -5,11 +5,15 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.gson.Gson;
 import com.squareup.otto.Subscribe;
+
+import java.util.List;
 
 import myst.developersystem.api.communicator.Communicator;
 import myst.developersystem.api.model.BusProvider;
 import myst.developersystem.api.model.ServerEvent;
+import myst.developersystem.api.model.json.UserData;
 
 public class InitializeActivity extends AppCompatActivity {
 
@@ -52,8 +56,10 @@ public class InitializeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void gotoDashboard() {
+    private void gotoDashboard(UserData userData) {
+        String data = new Gson().toJson(userData);
         Intent intent = new Intent(this, DashboardActivity.class);
+        intent.putExtra("USER_DATA", data);
         startActivity(intent);
     }
 
@@ -74,6 +80,8 @@ public class InitializeActivity extends AppCompatActivity {
         if(serverEvent.getServerResponse().getStatus().equals("fail")) {
             gotoLogin();
         }
-        gotoDashboard();
+
+        List<UserData> userData =  serverEvent.getServerResponse().getData();
+        gotoDashboard(userData.get(0));
     }
 }

@@ -10,12 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
+
+import java.util.List;
 
 import myst.developersystem.api.communicator.Communicator;
 import myst.developersystem.api.model.BusProvider;
 import myst.developersystem.api.model.ServerEvent;
+import myst.developersystem.api.model.json.UserData;
 import myst.developersystem.classes.HashPassword;
 
 public class LoginActivity extends AppCompatActivity {
@@ -71,8 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void gotoDashboard() {
+    private void gotoDashboard(UserData userData) {
+        String data = new Gson().toJson(userData);
         Intent intent = new Intent(this, DashboardActivity.class);
+        intent.putExtra("USER_DATA", data);
         startActivity(intent);
     }
 
@@ -101,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("password", hashedPassword);
         editor.apply();
 
-        gotoDashboard();
+        List<UserData> userData =  serverEvent.getServerResponse().getData();
+
+        gotoDashboard(userData.get(0));
     }
 }

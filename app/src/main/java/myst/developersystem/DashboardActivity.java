@@ -7,11 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+
+import myst.developersystem.api.model.json.UserData;
 
 public class DashboardActivity extends AppCompatActivity {
 
     private Button investmentsButton;
     private ImageButton settingsButton;
+    private UserData userData;
+    private Integer role;
     private final static String PREFS_NAME = "loginDetails";
 
     @Override
@@ -20,10 +27,31 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         investmentsButton = (Button)findViewById(R.id.gotoInvestments);
+
+        Intent intent = getIntent();
+        userData = new Gson().fromJson(intent.getStringExtra("USER_DATA"), UserData.class);
+        role = userData.getRole();
+
+        TextView username = (TextView)findViewById(R.id.username);
+        TextView email = (TextView)findViewById(R.id.email);
+        TextView created = (TextView)findViewById(R.id.created);
+        username.setText(userData.getName());
+        email.setText(userData.getEmail());
+        created.setText(userData.getCreated());
+
+        if(role != 1) {
+            investmentsButton.setText(R.string.button_goto_search);
+        }
+
         investmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoInvestments();
+                if(role == 1) {
+                    gotoInvestments();
+                } else {
+                    gotoSearch();
+                }
+
             }
         });
 
@@ -43,6 +71,11 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void gotoInvestments() {
         Intent intent = new Intent(this, InvestmentsListActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoSearch() {
+        Intent intent = new Intent(this, FlatSearchActivity.class);
         startActivity(intent);
     }
 

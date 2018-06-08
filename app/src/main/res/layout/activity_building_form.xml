@@ -9,7 +9,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="@dimen/activityPadding"
-        tools:context="myst.developersystem.InvestmentFormActivity">
+        tools:context="myst.developersystem.BuildingFormActivity">
 
         <EditText
             android:id="@+id/buildingName"
@@ -18,12 +18,12 @@
             android:layout_marginBottom="@dimen/smallMargin"
             android:inputType="text"
             android:maxLines="1"
-            android:hint="Nazwa budynku"/>
+            android:hint="@string/hint_building_name"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wybierz ilość pięter w budynku"/>
+            android:text="@string/hint_building_floors"/>
 
         <Spinner
             android:id="@+id/buildingFloors"
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wybierz datę ukończenia budynku"/>
+            android:text="@string/hint_building_completion"/>
 
         <DatePicker
             android:id="@+id/buildingFinishDate"
