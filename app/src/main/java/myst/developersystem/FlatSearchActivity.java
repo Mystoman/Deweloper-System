@@ -1,8 +1,11 @@
 package myst.developersystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -11,6 +14,7 @@ import java.util.List;
 
 public class FlatSearchActivity extends AppCompatActivity {
 
+    private Button searchButton;
     private Spinner floorSpinner;
     private EditText cityET, areaFromET, areaToET, roomsFromET, roomsToET;
 
@@ -20,6 +24,13 @@ public class FlatSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flat_search);
 
         initVariables();
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoMap();
+            }
+        });
     }
 
     private void setFloorSpinner() {
@@ -36,11 +47,17 @@ public class FlatSearchActivity extends AppCompatActivity {
     }
 
     private void initVariables() {
+        searchButton = (Button)findViewById(R.id.searchButton);
         cityET = (EditText)findViewById(R.id.city);
         areaFromET = (EditText)findViewById(R.id.areaFrom);
         areaToET = (EditText)findViewById(R.id.areaTo);
         roomsFromET = (EditText)findViewById(R.id.roomsFrom);
         roomsToET = (EditText)findViewById(R.id.roomsTo);
         setFloorSpinner();
+    }
+
+    private void gotoMap() {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
     }
 }
